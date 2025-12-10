@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>TechStore | Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">TechStore</a>
+        <nav class="nav-icons">
+            <a href="cadastro.html" id="btn-criar">👤 Criar Conta</a>
+            <a href="carrinho.html">🛒 Carrinho (0)</a>
+        </nav>
+    </header>
+
+    <div id="toast-box"></div>
+
+    <main>
+        <h2 class="section-title">Crie sua Conta</h2>
+        
+        <form id="formCadastro" onsubmit="salvarUsuario(event, 'cadastro')">
+            
+            <div class="input-group">
+                <label>Nome Completo</label>
+                <input type="text" id="nome" required>
+            </div>
+            
+            <div class="input-group">
+                <label>CPF (Apenas números)</label>
+                <input type="text" id="cpf" maxlength="14" oninput="mascaraCPF(this)" required>
+            </div>
+
+            <div class="input-group">
+                <label>Telefone</label>
+                <input type="text" id="telefone" maxlength="15" oninput="mascaraTelefone(this)">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="input-group" style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label>Estado</label>
+                    <select id="estado" onchange="carregarCidades()" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="">UF</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="CE">Ceará</option>
+                    </select>
+                </div>
+                <div style="flex: 1;">
+                    <label>Cidade</label>
+                    <select id="cidade" disabled style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="">Selecione o Estado primeiro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" id="senha" required>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Cadastrar</button>
+        </form>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

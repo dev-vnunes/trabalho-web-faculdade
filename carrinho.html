@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Carrinho</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">TechStore</a>
+        <nav class="nav-icons">
+            <a href="cadastro.html" id="btn-criar">👤 Criar Conta</a>
+            <a href="carrinho.html">🛒 Carrinho (0)</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="section-title">Seu Carrinho de Compras</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Descrição</th>
+                        <th>Qtd.</th>
+                        <th>Preço Unit.</th>
+                        <th>Total Item</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-produtos">
+                    <tr class="item-carrinho">
+                        <td style="width: 100px;">
+                            <img src="https://via.placeholder.com/80" alt="Produto" style="border-radius: 8px;">
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Fone Bluetooth Pro</strong><br>
+                            <span style="font-size: 0.9rem; color: #666;">Cor: Preto</span>
+                        </td>
+                        <td>
+                            <input type="number" value="1" min="0" class="qtd-input"
+                                   style="width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 4px;"
+                                   oninput="atualizarCarrinho(this)">
+                        </td>
+                        <td class="preco-unitario" data-preco="299.00">R$ 299,00</td>
+                        <td class="total-item">R$ 299,00</td>
+                    </tr>
+
+                    <tr class="item-carrinho">
+                        <td>
+                            <img src="https://via.placeholder.com/80" alt="Produto" style="border-radius: 8px;">
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Smartwatch Z</strong><br>
+                            <span style="font-size: 0.9rem; color: #666;">Cor: Prata</span>
+                        </td>
+                        <td>
+                            <input type="number" value="2" min="0" class="qtd-input"
+                                   style="width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 4px;"
+                                   oninput="atualizarCarrinho(this)">
+                        </td>
+                        <td class="preco-unitario" data-preco="450.00">R$ 450,00</td>
+                        <td class="total-item">R$ 900,00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; text-align: right; border-top: 1px solid #eee; padding-top: 20px;">
+                <h3 style="margin-bottom: 20px; color: var(--secondary-color);">
+                    Total do Pedido: <span id="total-final" style="color: var(--primary-color);">R$ 1.199,00</span>
+                </h3>
+                
+                <a href="produtos.html" class="btn btn-secondary" style="margin-right: 10px;">Continuar Comprando</a>
+                <button class="btn" onclick="alert('Compra Finalizada!')">Finalizar Compra</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechStore - Projeto Web</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    
+    <script>
+        // Garante que o total esteja certo assim que a página carrega
+        window.onload = function() {
+            recalcularTudo();
+        }
+    </script>
+</body>
+</html>
