@@ -12,7 +12,7 @@
         <a href="index.html" class="logo">TechStore</a>
         <nav class="nav-icons">
             <a href="cadastro.html" id="btn-criar">👤 Criar Conta</a>
-            <a href="carrinho.html">🛒 Carrinho (0)</a>
+            <a href="carrinho.html" id="qtd-carrinho">🛒 Carrinho (0)</a>
         </nav>
     </header>
 
@@ -33,43 +33,43 @@
                 <tbody id="lista-produtos">
                     <tr class="item-carrinho">
                         <td style="width: 100px;">
-                            <img src="https://via.placeholder.com/80" alt="Produto" style="border-radius: 8px;">
+                            <img src="img/fone.png" alt="Headset" style="border-radius: 8px; width: 80px;">
                         </td>
                         <td style="text-align: left;">
-                            <strong>Fone Bluetooth Pro</strong><br>
-                            <span style="font-size: 0.9rem; color: #666;">Cor: Preto</span>
+                            <strong>Headset Gamer</strong><br>
+                            <span style="font-size: 0.9rem; color: #666;">Cor: Preto | LED RGB</span>
                         </td>
                         <td>
                             <input type="number" value="1" min="0" class="qtd-input"
                                    style="width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 4px;"
                                    oninput="atualizarCarrinho(this)">
                         </td>
-                        <td class="preco-unitario" data-preco="299.00">R$ 299,00</td>
-                        <td class="total-item">R$ 299,00</td>
+                        <td class="preco-unitario" data-preco="250.00">R$ 250,00</td>
+                        <td class="total-item">R$ 250,00</td>
                     </tr>
 
                     <tr class="item-carrinho">
                         <td>
-                            <img src="https://via.placeholder.com/80" alt="Produto" style="border-radius: 8px;">
+                            <img src="img/s23.png" alt="Samsung S23" style="border-radius: 8px; width: 80px;">
                         </td>
                         <td style="text-align: left;">
-                            <strong>Smartwatch Z</strong><br>
-                            <span style="font-size: 0.9rem; color: #666;">Cor: Prata</span>
+                            <strong>Samsung S23</strong><br>
+                            <span style="font-size: 0.9rem; color: #666;">Cor: Creme | 256GB</span>
                         </td>
                         <td>
                             <input type="number" value="2" min="0" class="qtd-input"
                                    style="width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 4px;"
                                    oninput="atualizarCarrinho(this)">
                         </td>
-                        <td class="preco-unitario" data-preco="450.00">R$ 450,00</td>
-                        <td class="total-item">R$ 900,00</td>
+                        <td class="preco-unitario" data-preco="3500.00">R$ 3.500,00</td>
+                        <td class="total-item">R$ 7.000,00</td>
                     </tr>
                 </tbody>
             </table>
 
             <div style="margin-top: 30px; text-align: right; border-top: 1px solid #eee; padding-top: 20px;">
                 <h3 style="margin-bottom: 20px; color: var(--secondary-color);">
-                    Total do Pedido: <span id="total-final" style="color: var(--primary-color);">R$ 1.199,00</span>
+                    Total do Pedido: <span id="total-final" style="color: var(--primary-color);">R$ 0,00</span>
                 </h3>
                 
                 <a href="produtos.html" class="btn btn-secondary" style="margin-right: 10px;">Continuar Comprando</a>
@@ -85,7 +85,7 @@
     <script src="js/script.js"></script>
     
     <script>
-        // Garante que o total esteja certo assim que a página carrega
+        // Força o cálculo assim que a página abre
         window.onload = function() {
             recalcularTudo();
         }

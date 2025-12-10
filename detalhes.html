@@ -2,40 +2,204 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>TechStore | Detalhes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Detalhes do Produto</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <a href="index.html" class="logo">TechStore</a>
+        <nav class="nav-icons">
+            <a href="carrinho.html">🛒 Carrinho</a>
+        </nav>
     </header>
 
     <main>
-        <div style="display: flex; flex-wrap: wrap; gap: 40px; background: white; padding: 40px; border-radius: 12px; box-shadow: var(--shadow);">
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             
-            <div style="flex: 1; min-width: 300px;">
-                <img src="https://via.placeholder.com/500" alt="Detalhe" style="width: 100%; border-radius: 8px;">
+            <div style="flex: 1; min-width: 300px; display: flex; align-items: center; justify-content: center;">
+                <img id="detalhe-img" src="" alt="Produto" style="max-width: 100%; height: auto; border-radius: 8px;">
             </div>
 
             <div style="flex: 1; min-width: 300px;">
-                <h2 style="color: var(--secondary-color); margin-bottom: 10px;">iPhone 14 Pro Max</h2>
-                <h3 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 20px;">R$ 4.500,00</h3>
+                <h2 id="detalhe-titulo" style="color: #2c3e50; margin-bottom: 10px;">Carregando...</h2>
+                <h3 id="detalhe-preco" style="color: #007bff; font-size: 2rem; margin-bottom: 20px;">R$ 0,00</h3>
                 
-                <p style="margin-bottom: 20px; line-height: 1.6;">Este é o smartphone mais avançado já criado. Com câmera de 48MP e processador A16 Bionic.</p>
+                <p id="detalhe-desc" style="margin-bottom: 20px; line-height: 1.6; color: #555;">
+                    Descrição do produto...
+                </p>
                 
-                <h4 style="margin-bottom: 10px;">Especificações:</h4>
-                <ul style="margin-left: 20px; margin-bottom: 30px; line-height: 1.8;">
-                    <li>Tela: 6.7" Super Retina</li>
-                    <li>Armazenamento: 256GB</li>
-                    <li>Cor: Deep Purple</li>
-                    <li>Conexão: 5G</li>
-                </ul>
+                <h4 style="margin-bottom: 10px; color: #333;">Especificações Técnicas:</h4>
+                <ul id="detalhe-lista" style="margin-left: 20px; margin-bottom: 30px; line-height: 1.8; color: #555;">
+                    </ul>
 
-                <button class="btn" onclick="alert('Adicionado ao carrinho!')">Adicionar ao Carrinho</button>
+                <button class="btn" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+                <br><br>
+                <a href="produtos.html" style="text-decoration: none; color: #666;">&larr; Voltar para a lista</a>
             </div>
         </div>
     </main>
 
     <footer><p>&copy; 2025 TechStore</p></footer>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        // "Banco de Dados" dos seus produtos
+        const bancoDeProdutos = {
+            "acernitrov": {
+                titulo: "Notebook Acer Nitro V",
+                preco: "R$ 4.699,00",
+                img: "img/acernitrov.png",
+                desc: "Domine o jogo com o Acer Nitro V. Equipado com processador Intel Core i5 de última geração e placa de vídeo RTX 3050, ele oferece desempenho de sobra para seus games favoritos.",
+                specs: ["Processador: Intel Core i5 13ª Geração", "Placa de Vídeo: RTX 3050 4GB", "RAM: 8GB DDR4 (Expansível)", "Armazenamento: 512GB SSD NVMe", "Tela: 15.6' Full HD 144Hz"]
+            },
+            "macbookm1": {
+                titulo: "Macbook Air M1",
+                preco: "R$ 4.699,00",
+                img: "img/macbookm1.png",
+                desc: "O notebook mais fino e leve da Apple, agora com os superpoderes do chip M1. Encare seus projetos com a CPU de 8 núcleos ultrarrápida.",
+                specs: ["Chip: Apple M1", "Memória Unificada: 8GB", "SSD: 256GB", "Tela: Retina 13.3'", "Bateria: Até 18 horas"]
+            },
+            "asusvivobook": {
+                titulo: "Notebook Asus Vivobook",
+                preco: "R$ 2.499,00",
+                img: "img/asusvivobook.png",
+                desc: "Com design moderno e compacto, o Vivobook é perfeito para produtividade e estudos. Tela NanoEdge para maior imersão.",
+                specs: ["Processador: Intel Core i3", "RAM: 4GB", "SSD: 256GB", "Tela: 15.6' HD", "Peso: 1.7kg"]
+            },
+            "dellg15": {
+                titulo: "Notebook Dell G15",
+                preco: "R$ 9.599,00",
+                img: "img/dellg15.png",
+                desc: "Potência bruta para gamers exigentes. O G15 conta com sistema de resfriamento alienware e desempenho máximo.",
+                specs: ["Processador: Intel Core i7", "Placa: RTX 4060", "RAM: 16GB", "SSD: 1TB", "Tela: 165Hz"]
+            },
+            "iphone14": {
+                titulo: "iPhone 14 Pro Max",
+                preco: "R$ 4.399,00",
+                img: "img/Iphone14promax.png",
+                desc: "Uma maneira mágica de interagir com o iPhone. Recursos de segurança projetados para salvar vidas. E câmera de 48MP inovadora.",
+                specs: ["Tela: 6.7' Super Retina XDR", "Dynamic Island", "Chip: A16 Bionic", "Câmera: 48MP Principal", "5G: Sim"]
+            },
+            "s23": {
+                titulo: "Samsung Galaxy S23",
+                preco: "R$ 3.499,00",
+                img: "img/samsungs23.png",
+                desc: "Câmera Nightography para fotos incríveis no escuro e o processador Snapdragon mais rápido do mundo.",
+                specs: ["Processador: Snapdragon 8 Gen 2", "Tela: 6.1' Dynamic AMOLED 2X", "Câmeras: Tripla 50MP", "Bateria: 3900mAh"]
+            },
+            "pocof7": {
+                titulo: "Xiaomi Poco F7",
+                preco: "R$ 2.499,00",
+                img: "img/pocof7.png",
+                desc: "O rei do custo-benefício. Desempenho de topo de linha por um preço acessível, ideal para jogos mobile.",
+                specs: ["Processador: Dimensity 9000", "Tela: AMOLED 120Hz", "Carregamento: 67W Turbo", "RAM: 8GB"]
+            },
+            "motoedge60": {
+                titulo: "Motorola Edge 60 Pro",
+                preco: "R$ 2.649,00",
+                img: "img/motorolaedge60pro.png",
+                desc: "Beleza e potência com tela curva infinita e sistema de câmeras de alta resolução.",
+                specs: ["Tela: pOLED 144Hz", "Câmera: 50MP OIS", "Processador: Snapdragon 7 Gen 3", "Som: Dolby Atmos"]
+            },
+            "fonegamer": {
+                titulo: "Headset Gamer Pro",
+                preco: "R$ 250,00",
+                img: "img/fonegamer.png",
+                desc: "Som surround 7.1 virtual para você ouvir cada passo do inimigo. Conforto para horas de jogatina.",
+                specs: ["Conexão: USB/P3", "Microfone: Cancelamento de ruído", "Iluminação: LED RGB", "Driver: 50mm"]
+            },
+            "applewatch": {
+                titulo: "Apple Watch Series 10",
+                preco: "R$ 4.949,00",
+                img: "img/applewatch.png",
+                desc: "O relógio inteligente definitivo. Monitore sua saúde, exercícios e sono com precisão clínica.",
+                specs: ["Tela: Retina Sempre Ativa", "Sensores: Oxigênio, ECG", "Resistência: 50m água", "GPS: Integrado"]
+            },
+            "cadeira": {
+                titulo: "Cadeira Gamer Ergo",
+                preco: "R$ 799,00",
+                img: "img/cadeiragamer.png",
+                desc: "Ergonomia e estilo para o seu setup. Ajuste de altura, inclinação e almofadas lombares.",
+                specs: ["Material: Couro Sintético", "Pistão: Classe 4", "Reclinação: Até 180°", "Peso Suportado: 120kg"]
+            },
+            "ipods": {
+                titulo: "Apple AirPods Pro",
+                preco: "R$ 4.199,00",
+                img: "img/appleipods.png",
+                desc: "Cancelamento Ativo de Ruído para um som imersivo. Modo Ambiente para ouvir o mundo ao seu redor.",
+                specs: ["Áudio Espacial", "Resistência: Suor e água", "Estojo: MagSafe", "Bateria: Até 24h total"]
+            },
+            "pcgamercompleto": {
+                titulo: "PC Gamer Completo (Kit)",
+                preco: "R$ 3.199,00",
+                img: "img/pcgamercompleto.png",
+                desc: "Solução tudo em um: PC, Monitor, Teclado e Mouse. Pronto para ligar e jogar seus e-sports favoritos.",
+                specs: ["Processador: Ryzen 5 5600G", "Monitor: 21 polegadas", "Periféricos: Kit Gamer RGB", "RAM: 16GB"]
+            },
+            "pcgamerfull": {
+                titulo: "PC Gamer Full Setup",
+                preco: "R$ 6.200,00",
+                img: "img/pcgamer.png",
+                desc: "Máquina de alta performance para rodar lançamentos no Ultra. Gabinete com fluxo de ar otimizado.",
+                specs: ["GPU: RTX 3060 12GB", "CPU: Core i5 12400F", "RAM: 16GB 3200MHz", "Fonte: 650W 80 Plus"]
+            },
+            "pccompleto": {
+                titulo: "PC Home Office Completo",
+                preco: "R$ 3.199,00",
+                img: "img/pccompleto.png",
+                desc: "Setup ideal para trabalho e estudos. Acompanha monitor ultrawide para multitarefas.",
+                specs: ["Processador: Intel Core i5", "Monitor: 25' Ultrawide", "Armazenamento: 480GB SSD", "Webcam: Full HD"]
+            },
+            "pcgamer": {
+                titulo: "PC Gamer Entry Level",
+                preco: "R$ 1.999,00",
+                img: "img/pccompletogamer.png",
+                desc: "A porta de entrada para o mundo do PC Gaming. Rode jogos leves e emuladores com fluidez.",
+                specs: ["APU: AMD Ryzen 3 3200G", "Gráfico: Vega 8 Integrado", "RAM: 8GB Dual Channel", "SSD: 240GB"]
+            }
+        };
+
+        // Função que roda ao abrir a página
+        window.onload = function() {
+            // 1. Pega o ID da URL (ex: detalhes.html?prod=acernitrov)
+            const urlParams = new URLSearchParams(window.location.search);
+            const produtoId = urlParams.get('prod');
+
+            // 2. Busca no "Banco de Dados"
+            const produto = bancoDeProdutos[produtoId];
+
+            if (produto) {
+                // 3. Preenche o HTML
+                document.getElementById('detalhe-titulo').innerText = produto.titulo;
+                document.getElementById('detalhe-preco').innerText = produto.preco;
+                document.getElementById('detalhe-desc').innerText = produto.desc;
+                document.getElementById('detalhe-img').src = produto.img;
+
+                // 4. Cria a lista de specs
+                const lista = document.getElementById('detalhe-lista');
+                lista.innerHTML = ""; // Limpa lista antiga
+                produto.specs.forEach(item => {
+                    let li = document.createElement('li');
+                    li.innerText = item;
+                    lista.appendChild(li);
+                });
+            } else {
+                // Se não achar o produto (ou abrir sem link), volta pra produtos
+                alert("Produto não encontrado! Redirecionando...");
+                window.location.href = "produtos.html";
+            }
+            
+            // Carrega contador do carrinho e login
+            carregarContadorCarrinho();
+            if(typeof verificarLogin === 'function') verificarLogin();
+        };
+
+        function adicionarAoCarrinho() {
+            alert("Produto adicionado ao carrinho!");
+            // Aqui você poderia implementar a lógica real de adicionar ao localStorage
+        }
+    </script>
 </body>
 </html>
